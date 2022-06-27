@@ -19,13 +19,18 @@ const forecast = (latitude, longitude, callback) => {
     //shorthand syntax
     request({ url, json: true }, (error, { body }) => {
         if (error) {
-            callback('Unable to connect to weather App', undefined)
+            // callback('Unable to connect to weather App', undefined)
+            callback(undefined, 'Unable to connect to weather App')
         } else if (body.error) {
-            callback('Unable to find location', undefined)
+            // callback('Unable to find location', undefined)
+            callback(undefined ,'Unable to find location')
         } else {
-            console.log('It is current ' + body.current.temperature + ' degree out. There is a ' + body.current.precip + ' chance of rain')
+            // callback('It is current ' + body.current.temperature + ' degree out. There is a ' + body.current.temperature + ' chance of rain', undefined)
+            // callback(undefined, 'It is current ' + body.current.temperature + ' degree out. There is a ' + body.current.weather_code + ' weather code')
+            console.log( 'It is current ' + body.current.temperature + ' degree out. There is a ' + body.current.weather_code + ' weather code')
         }
 
+ 
     })
 }
 module.exports = forecast;
