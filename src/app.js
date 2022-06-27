@@ -12,6 +12,7 @@ console.log(path.join(__dirname, '../public'))
 
 
 const app = express()
+const port  = process.env.PORT || 3090
 
 //define path for Express Config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -115,9 +116,14 @@ app.get('*', (req, res) => {
 // })
 
 
-app.listen(3090, () => {
-    console.log('server is up on port 3090.')
+// app.listen(3090, () => {
+//     console.log('server is up on port 3090.')
+// })
+
+app.listen(port, () => {
+    console.log('server is up on port '+port)
 })
+
 
 
 
