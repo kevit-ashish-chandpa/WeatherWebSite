@@ -59,7 +59,7 @@ app.get('/help/*', (req, res) => {
 })
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
-        res.send({
+        return res.send({
             error: 'Please Provide an Address'
         })
     }
@@ -68,12 +68,13 @@ app.get('/weather', (req, res) => {
         if (error) {    //California 94122
             return res.send({ error })
         }
-        res.send({ place })
+        // res.send({ place })
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
                 return res.send({ error });
             }
             res.send({
+                place: place,
                 forecast: forecastData,
                 address: req.query.address
             })
