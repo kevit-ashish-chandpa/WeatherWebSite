@@ -6,13 +6,14 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 const { createSecretKey } = require('crypto')
 
+
 console.log(__dirname)
 // console.log(__filename)
 console.log(path.join(__dirname, '../public'))
 
 
 const app = express()
-const port  = process.env.PORT || 3090
+const port = process.env.PORT || 3090
 
 //define path for Express Config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -29,6 +30,7 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))           //for customising a server
 
 
+
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather App',
@@ -42,6 +44,8 @@ app.get('/about', (req, res) => {
         name: 'Ashish'
     })
 })
+
+
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help the Person',
@@ -104,5 +108,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('server is up on port '+port)
+    console.log('server is up on port ' + port)
 })
