@@ -82,11 +82,6 @@ app.get('/weather', (req, res) => {
         })
 
     })
-    // res.send({
-    //     forecast: 'It is snwoing',
-    //     location: 'my_Lookk',
-    //     address: req.query.address
-    // })
 })
 app.get('/products', (req, res) => {
     if (!req.query.games) {
@@ -108,51 +103,6 @@ app.get('*', (req, res) => {
     })
 })
 
-// app.get('*', (req,res)=>{
-//     res.send('good morning its not useful for u!!!')
-// })
-
-// app.get('/help/*', (req,res)=>{
-//     res.send('helping not supported in u morning its not useful for u!!!')
-// })
-
-
-// app.listen(3090, () => {
-//     console.log('server is up on port 3090.')
-// })
-
 app.listen(port, () => {
     console.log('server is up on port '+port)
 })
-
-
-
-
-// app.get('', (req, res)=>{
-//     res.send('<h1>hello express</h1>')
-// })
-
-
-//now making it from html page
-
-// app.get('/help', (req, res)=>{
-//     res.send([{
-//         name: 'Andrew',
-//         age: 27
-//     },{
-//         name: 'ff',
-//         age: 257
-//     }])
-// })
-// app.get('/about', (req, res)=>{
-//     res.send('<h1>about page</h1>')
-// })
-
-
-
-// app.com
-// app.com/help
-// app.com/about
-
-
-

@@ -1,43 +1,17 @@
 const request = require('request')
+const axios = require('axios')
 const geocode = (address, callback) => {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoidmFuc2hpa2FzaGFoIiwiYSI6ImNsNHA5Y3R3MzBmOGQzb3F6MTc2a2Rya2wifQ.IGTcSI7jp6numJIudBpAkA'
 
-    // request({ url: url, json: true }, (error, responce) => {
-    //     if (error) {
-    //         callback('Unable to connect to service', undefined)
-    //     } else if (responce.body.features.length === 0) {
-    //         callback('Unable to connect to location', undefined)
-    //     }
-    //     else {
-    //         callback(undefined, {
-    //             latitude: responce.body.features[0].center[1],
-    //             longtitude: responce.body.features[0].center[0],
-    //             place: responce.body.features[0].place_name
-    //             // console.log(latitude, longtitude, place)
-    //         })
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoiYXNoaXNoMTQ4NSIsImEiOiJjbDR4cTE2ZDgwNjVhM2NuMzhqenc1aWU5In0.X1IGD8G66SZvVxHkT1K2mA'
 
-    //     }
-
-
-    // })
-
-
-
-    //shorthand
-    request({ url, json: true }, (error, {body}) => {
-        if (error) {
-            callback('Unable to connect to service', undefined)
-        } else if (body.features.length === 0) {
-            callback('Unable to connect to location', undefined)
-        }
-        else {
-            callback(undefined, {
-                latitude: body.features[0].center[1],
-                longtitude: body.features[0].center[0],
-                place: body.features[0].place_name
-                // console.log(latitude, longtitude, place)
-            })
-        }
+    axios.get(url).then(({data})  => {
+        callback(undefined, {
+            latitude: data.features[0].center[1],
+            longtitude: data.features[0].center[0],
+            place: data.features[0].place_name
+        })
+    }).catch(({error})=>{
+        callback(undefined, 'There will be an error with your server ')
     })
 }
 module.exports = geocode
