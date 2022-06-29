@@ -8,6 +8,34 @@ const messageTwo = document.querySelector('#message-2')
 
 messageOne.textContent = 'From Javascript'
 
+weatherForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const location = search.value
+
+    messageOne.textContent = 'Loading!!!!'
+    messageTwo.textContent = ''
+    //hello git    
+    try {
+        const response = await axios.get(`/weather?address=${location}`);
+        const data = response.data;
+        if (data.error) {
+            // console.log(data.error);
+            messageOne.textContent = data.error;
+        } else {
+            messageOne.textContent = data.location;
+            messageTwo.textContent = data.forecast;
+            // console.log(data.location);
+        }
+    } catch (err) { }
+    console.log(e);
+    // console.log("Now Itss Endddd!!!");
+})
+
+
+
+
+
 // debugger
 //
 // console.log('Client side JavaScript File')
@@ -50,29 +78,3 @@ messageOne.textContent = 'From Javascript'
 //2 nd implementation
 
 //
-
-weatherForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
-
-    const location = search.value
-
-    messageOne.textContent = 'Loading!!!!'
-    messageTwo.textContent = ''
-    //hello git
-    
-    try {
-        const response = await axios.get('/weather?address=' + location);
-        const data = response.data;
-        if (data.error) {
-            // console.log(data.error);
-            messageOne.textContent = data.error;
-        } else {
-            messageOne.textContent = data.location;
-            messageTwo.textContent = data.forecast;
-            // console.log(data.location);
-        }
-    } catch (e) { }
-    console.log(e);
-    console.log("Itsss workingg");
-})
-
