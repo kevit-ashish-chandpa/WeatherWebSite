@@ -1,10 +1,12 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const { query } = require('express')
+// const { query } = require('express')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
-const { createSecretKey } = require('crypto')
+// const { createSecretKey } = require('crypto')
+
+const axios = require('axios').default;
 
 console.log(__dirname)
 // console.log(__filename)
@@ -35,6 +37,20 @@ app.get('', (req, res) => {
         name: 'Ashish'
     })
 })
+
+// axios.get('/about')
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .then(function () {
+//     // always executed
+//   });
+
 
 app.get('/about', (req, res) => {
     res.render('about', {
